@@ -16,17 +16,21 @@ std::vector<GLuint> square_indices = {
 };
 
 
-void generate_hexagon(  std::vector<GLfloat>& vertice,
-                        GLfloat h_r,
-                        std::pair<GLfloat, GLfloat> centre)
+inline void generate_hexagon(   std::vector<GLfloat>& vertices,
+                                GLfloat h_r,
+                                std::pair<GLfloat, GLfloat> centre)
 {
 #define SIDES_OF_HEXGON 6
 
-    auto x = 0.0f, y = 0.0f;
+    GLfloat x = 0.0f, y = 0.0f;
 
-    for(auto i = 0 ; i < SIDES_OF_HEXGON; i++)
+    vertices.resize(6 * 9);
+
+    for(auto i = 0 ; i < SIDES_OF_HEXGON / 2; i++)
     {
-        x = h_r * std::cos( std::cos((M_PI * 6 ) / i ));
+        x = std::cos(M_PI / 3 * static_cast<double>(i)) * h_r;
+        y = std::sin(M_PI / 3 * static_cast<double>(i)) * h_r;
 
+        vertices.insert(vertices.begin(), {x, y, 0.0f});
     }
 }

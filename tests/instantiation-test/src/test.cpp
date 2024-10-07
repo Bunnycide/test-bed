@@ -59,6 +59,9 @@ MyApp::MyApp(const Window& window) : Application(window)
     shader_program.addShader("instance-renderer/default.vs.glsl", GL_VERTEX_SHADER);
     shader_program.addShader("instance-renderer/default.fs.glsl", GL_FRAGMENT_SHADER);
 
+    std::vector<GLfloat> vertices;
+    generate_hexagon(vertices, 2.0f ,{});
+
     shader_program.compile();
     shader_program.use();
 }
